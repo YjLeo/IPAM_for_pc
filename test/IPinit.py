@@ -90,7 +90,8 @@ if __name__ == '__main__':
         table = iptc.Table(iptc.Table.FILTER)
         chain = iptc.Chain(table, "INPUT")
         rule = iptc.Rule()
-        match = rule.add_match('tcp')
+        match = iptc.Match(rule, 'tcp')
+        rule.add_match(match)
         match.dport='5000'
         target = rule.create_target("DROP")
         print  '##清空队列所有cache'
