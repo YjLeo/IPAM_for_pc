@@ -1,6 +1,8 @@
 # coding=utf-8
 from core import Connect
 from core.Connect import redis
+import sys
+sys.path.append("..")
 
 id_store = redis.connectmap()
 unallocated = redis.connect('unallocated')
