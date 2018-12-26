@@ -17,7 +17,6 @@ class Redis(object):
             r = redis.Redis(connection_pool=self.pool)
             return r.get(key)
 
-
     def incrValue(self,key):
             r = redis.Redis(connection_pool=self.pool)
             r.incr(key, 1)
@@ -26,11 +25,10 @@ class Redis(object):
             r = redis.Redis(connection_pool=self.pool)
             r.decr(key, 1)
 
-
-
     def delValue(self,key):
             r = redis.Redis(connection_pool=self.pool)
             r.delete(key)
+
 
 
 

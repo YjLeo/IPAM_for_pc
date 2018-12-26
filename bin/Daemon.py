@@ -10,8 +10,6 @@ from core.Connect import redis
 
 
 class foo:
-
-
     @staticmethod
     def get_ip(token):
         url = "http://192.168.128.201/api/apiclient/addresses/first_free/11/"
@@ -25,7 +23,6 @@ class foo:
             ip = (response.json()['data'])
             print ip
         except Exception as e:
-            print response.json(),"foo_getIP"+"token:"+token
             return "None"
         print "get "+ip
         return ip
@@ -41,11 +38,10 @@ class foo:
         }
         try:
             response = requests.request("DELETE", url, data=payload, headers=headers)
-            ip = response.json()['data']['ip']
         except:
-            raise response.json()
-        print( ip + " dele from ipam")
-        return ip
+            return
+        print( str(ips) + " dele from ipam")
+        return str(ips)
     def token(self):
         url = "http://192.168.128.201/api/apiclient/user/"
         payload = ""
@@ -55,7 +51,7 @@ class foo:
             token=(response.json()['data']['token'])
             return token
         except:
-            print response.json(),"foo_recIP"+"token:"+token
+            print response.json(),"token error "+"token:"+token
             return
 
 class task:
@@ -67,6 +63,7 @@ class task:
         while self.token==None:
             print "Getting token"
             sleep(1)
+        print "token got"
         self.unallocated = redis.connect('unallocated')
         self.allocated=redis.connect('allocated')
         self.get_timesleep=0.002
@@ -97,14 +94,14 @@ class task:
                     try:
                         self.allocated.put(ip)
                         self.get_timesleep=0.002
-                    except:
+                        print "put " + ip + " to allocated_pool Ok"
+                    except Exception as e :
                         #异常回收到phpipam
                         foo.rec_ip(token,ip)
-                        print "put " + ip + " to allocated_pool False"
-                    print "put "+ip+" to allocated_pool Ok"
+                        print "put " + ip + " to allocated_pool False.return phpipam"
+                        print e
                 else:
                     self.get_timesleep=10
-                    print "No allocated IP"
             except Exception as e:
                 print e
 
@@ -119,13 +116,12 @@ class task:
                     #从不可用列表拿出IP回收到IPAM
                     self.rec_timesleep = 0.002
                     print foo.rec_ip(token,ip)
-                except Exception as e:
+                except :
                     #异常  丢回可用列表cache
                     self.allocated.put(ip)
                     print str(ip)+" rec false return cache"
             else:
                 self.rec_timesleep=10
-                print "No unallocated IP"
 
     def get_ip_work(self):
             while 1:

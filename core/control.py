@@ -20,7 +20,6 @@ class ip:
 
 class Store:
 
-
     @staticmethod
     def put_dockerid(key,value):
         #{"dockerid","ip"} return ip

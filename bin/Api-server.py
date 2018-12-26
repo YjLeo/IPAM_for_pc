@@ -11,6 +11,7 @@ class get_ip(Resource):
     def get():
         if request.method == 'GET':
             ips=ip.get_ip()
+            print "获取IP:" + str(ips)
             return ips
 class recover_ip(Resource):
     @staticmethod
@@ -18,6 +19,7 @@ class recover_ip(Resource):
         if request.method == 'POST':
             data=request.args.get('ip')
             rev=ip.rec_ip(data)
+            print "回收IP:"+str(rev)
             return rev
 
 class store(Resource):
