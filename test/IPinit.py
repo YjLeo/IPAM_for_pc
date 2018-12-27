@@ -99,7 +99,7 @@ if __name__ == '__main__':
    if len_allocat()>=1500:
         print "IP余量大于1500不进行初始化:"+str(len_allocat())
    else:
-        print '开始关闭端口'
+        print "开始关闭端口"
         table = iptc.Table(iptc.Table.FILTER)
         chain = iptc.Chain(table, "INPUT")
         rule = iptc.Rule()
@@ -111,7 +111,7 @@ if __name__ == '__main__':
         rule.target = target
         chain.insert_rule(rule)
         table.commit()
-        print  '##清空队列所有cache'
+        print  "##清空队列所有cache"
         clean_redis()
         uselist = search_k8s()
         allip=search_DB()
@@ -123,7 +123,7 @@ if __name__ == '__main__':
              print ip
              redis.connect('allocated').put(ip)
         Sync_idmap()
-        print '释放端口'
+        print "释放端口"
         chain.delete_rule(rule)
         table.commit()
 
