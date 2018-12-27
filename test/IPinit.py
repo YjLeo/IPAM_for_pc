@@ -60,7 +60,7 @@ def search_k8s():
             except Exception as e:
                 print e
                 continue
-    return list(dict)
+    return list(ipdict)
 def search_pod_health():
     rev = requests.request("GET", "http://192.168.128.110:80/api/v1/pods")
     pods = rev.json()['items']
