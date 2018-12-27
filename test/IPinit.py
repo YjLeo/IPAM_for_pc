@@ -93,7 +93,7 @@ def Sync_idmap():
 
 
 if __name__ == '__main__':
-
+   print "开始健康检查"
    search_pod_health()
    print "K8S系统正常"
    if len_allocat()>=1500:
