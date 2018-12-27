@@ -83,7 +83,7 @@ if __name__ == '__main__':
     print "K8S系统正常"
     if len_allocat()>=1500:
         #不初始化
-         print "IP余量大于1500不进行初始化:"+str(len_allocat())
+        print "IP余量大于1500不进行初始化:"+str(len_allocat())
     else:
         ###封端口
         print '开始关闭端口'
@@ -94,6 +94,9 @@ if __name__ == '__main__':
         rule.add_match(match)
         match.dport='5000'
         target = rule.create_target("DROP")
+        rule.target = target
+        chain.insert_rule(rule)
+        table.commit()
         print  '##清空队列所有cache'
         clean_redis()
         uselist = search_k8s()
@@ -107,6 +110,9 @@ if __name__ == '__main__':
             redis.connect('allocated').put(ip)
         print '释放端口'
         target = rule.create_target("ACCEPT")
+        rule.target = target
+        chain.insert_rule(rule)
+        table.commit()
 
 
 
