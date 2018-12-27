@@ -124,7 +124,7 @@ if __name__ == '__main__':
              redis.connect('allocated').put(ip)
         Sync_idmap()
         print '释放端口'
-        # chain.delete_rule(rule)
+        chain.delete_rule(rule)
         table.commit()
 
 
@@ -132,10 +132,4 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-
-    #get k8s ip list
 
