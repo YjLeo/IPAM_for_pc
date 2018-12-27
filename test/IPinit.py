@@ -105,6 +105,8 @@ if __name__ == '__main__':
         for ip in Unuse:
             print ip
             redis.connect('allocated').put(ip)
+        print '释放端口'
+        target = rule.create_target("ACCEPT")
 
 
 
