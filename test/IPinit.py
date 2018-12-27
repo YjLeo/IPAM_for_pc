@@ -75,9 +75,6 @@ def search_pod_health():
         raise list(dict)
                     ##warn
 
-
-
-
 if __name__ == '__main__':
 
     search_pod_health()
@@ -112,9 +109,7 @@ if __name__ == '__main__':
             print ip
             redis.connect('allocated').put(ip)
         print '释放端口'
-        target = rule.create_target("ACCEPT")
-        rule.target = target
-        chain.insert_rule(rule)
+        chain.delete_rule(rule)
         table.commit()
 
 
