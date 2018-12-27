@@ -123,12 +123,9 @@ if __name__ == '__main__':
              print ip
              redis.connect('allocated').put(ip)
         Sync_idmap()
-         print '释放端口'
-         # chain.delete_rule(rule)
-         table.commit()
-
-
-        Sync_idmap()
+        print '释放端口'
+        # chain.delete_rule(rule)
+        table.commit()
 
 
 
