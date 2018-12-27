@@ -2,7 +2,7 @@
 from time import sleep
 import sys
 sys.path.append("..")
-import iptc
+#import iptc
 
 import requests
 ###清空cache
@@ -51,13 +51,12 @@ def search_DB():
 def search_k8s():
     rev=requests.request("GET","http://192.168.128.110:80/api/v1/pods")
     pods=rev.json()['items']
-    dict=[]
+    ipdict=[]
     for i in pods:
         if i['status']['phase']!='Failed':
             try:
                 if 'podIP' in i['status']:
-                    print i['status']['podIP']
-                    dict.append(i['status']['podIP'].encode('utf-8'))
+                    ipdict.append(i['status']['podIP'].encode('utf-8'))
             except Exception as e:
                 print e
                 continue
@@ -74,20 +73,36 @@ def search_pod_health():
         print "系统异常,请检查"
         raise list(dict)
                     ##warn
+def Sync_idmap():
+    print "清理旧ID映射表"
+    redis.connectmap().clear_all()
+    rev=requests.request("GET","http://192.168.128.110:80/api/v1/pods")
+    pods=rev.json()['items']
+    print "开始同步映射ID表"
+    for i in pods:
+        if i['status']['phase']!='Failed':
+            try:
+                if 'podIP' in i['status']:
+                    #ipdict.(i['status']['containerStatuses'][0].encode('utf-8'))
+                    redis.connectmap().setValue(i['status']['containerStatuses'][0]['containerID'].split('//')[1].encode('utf-8'),i['status']['podIP'].encode('utf-8'))
+            except Exception as e:
+                print e
+                print "异常，请检查."
+                continue
+    print "完成同步映射ID表"
+
 
 if __name__ == '__main__':
 
-    search_pod_health()
-    print "K8S系统正常"
-    if len_allocat()>=1500:
-        #不初始化
-        print "IP余量大于1500不进行初始化:"+str(len_allocat())
-    else:
-        ###封端口
+   search_pod_health()
+   print "K8S系统正常"
+   if len_allocat()>=1500:
+
+       print "IP余量大于1500不进行初始化:"+str(len_allocat())
+   else:
         print '开始关闭端口'
         table = iptc.Table(iptc.Table.FILTER)
         chain = iptc.Chain(table, "INPUT")
-
         rule = iptc.Rule()
         rule.protocol = "tcp"
         match = iptc.Match(rule, 'tcp')
@@ -105,13 +120,16 @@ if __name__ == '__main__':
         Unuse=[i for i in allip if i not in uselist]
         print "计算可用IP数:"+str(len(Unuse))
         print type(Unuse)
-        for ip in Unuse:
-            print ip
-            redis.connect('allocated').put(ip)
-        print '释放端口'
-        chain.delete_rule(rule)
-        table.commit()
+         for ip in Unuse:
+             print ip
+             redis.connect('allocated').put(ip)
+        Sync_idmap()
+         print '释放端口'
+         # chain.delete_rule(rule)
+         table.commit()
 
+
+        Sync_idmap()
 
 
 
