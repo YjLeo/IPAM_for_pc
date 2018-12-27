@@ -97,8 +97,7 @@ if __name__ == '__main__':
    search_pod_health()
    print "K8S系统正常"
    if len_allocat()>=1500:
-
-       print "IP余量大于1500不进行初始化:"+str(len_allocat())
+        print "IP余量大于1500不进行初始化:"+str(len_allocat())
    else:
         print '开始关闭端口'
         table = iptc.Table(iptc.Table.FILTER)
