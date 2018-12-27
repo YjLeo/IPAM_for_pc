@@ -89,7 +89,9 @@ if __name__ == '__main__':
         print '开始关闭端口'
         table = iptc.Table(iptc.Table.FILTER)
         chain = iptc.Chain(table, "INPUT")
+
         rule = iptc.Rule()
+        rule.protocol = "tcp"
         match = iptc.Match(rule, 'tcp')
         rule.add_match(match)
         match.dport='5000'
