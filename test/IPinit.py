@@ -119,7 +119,7 @@ if __name__ == '__main__':
         Unuse=[i for i in allip if i not in uselist]
         print "计算可用IP数:"+str(len(Unuse))
         print type(Unuse)
-         for ip in Unuse:
+        for ip in Unuse:
              print ip
              redis.connect('allocated').put(ip)
         Sync_idmap()
