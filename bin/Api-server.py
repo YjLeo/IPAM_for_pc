@@ -66,4 +66,4 @@ if __name__ == '__main__':
     api.add_resource(recover_ip, '/api/v1/rec_free_ip/', '/api/v1/rec_free_ip/<string:ip>')
     api.add_resource(store,'/api/v1/map_store/','/api/v1/map_store/<string:id>/<string:ip>')
     api.add_resource(avliip, '/api/v1/cacheip/', '/api/v1/cacheip/')
-    app.run(host='0.0.0.0',port=5001,debug=False,threaded=True)
+    app.run(host='0.0.0.0',port=5000,debug=False,threaded=True)
