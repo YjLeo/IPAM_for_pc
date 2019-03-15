@@ -1,13 +1,13 @@
 # coding=utf-8
 import multiprocessing
-
+import sys,os
+BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 import requests
 import thread
-from gevent import sleep
+from time import sleep
 from requests.auth import HTTPBasicAuth
 from core.Connect import redis
-
-
 
 class foo:
     @staticmethod
