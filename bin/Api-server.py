@@ -1,8 +1,9 @@
 # coding=utf-8
 from flask import Flask
+import os
 from flask import request
 from flask_restful import Resource, Api
-import sys,os
+import sys
 
 from test.IPinit import len_allocat
 
