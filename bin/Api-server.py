@@ -2,8 +2,12 @@
 from flask import Flask
 from flask import request
 from flask_restful import Resource, Api
-import sys
-sys.path.append("..")
+import sys,os
+
+from test.IPinit import len_allocat
+
+BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 
 from core.control import ip, Store
 
@@ -46,7 +50,12 @@ class store(Resource):
             id=request.args.get('id')
             rev=Store.del_dockerid(id)
             return rev
-
+class avliip(Resource):
+    @staticmethod
+    def get():
+        if request.method=="GET":
+            cache_ip=len_allocat()
+            return cache_ip
 
 
 app = Flask(__name__)
@@ -55,5 +64,5 @@ if __name__ == '__main__':
     api.add_resource(get_ip, '/api/v1/get_free_ip/', '/api/v1/get_free_ip/')
     api.add_resource(recover_ip, '/api/v1/rec_free_ip/', '/api/v1/rec_free_ip/<string:ip>')
     api.add_resource(store,'/api/v1/map_store/','/api/v1/map_store/<string:id>/<string:ip>')
-
-    app.run(host='0.0.0.0',port=5000,debug=False,threaded=True)
+    api.add_resource(avliip, '/api/v1/cacheip/', '/api/v1/cacheip/')
+    app.run(host='0.0.0.0',port=5001,debug=False,threaded=True)
