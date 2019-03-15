@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1cdae30-78f5-43fb-8b90-7044fad92b3e" name="Default" comment="删除test">
+    <list default="true" id="f1cdae30-78f5-43fb-8b90-7044fad92b3e" name="Default" comment="正式版">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -165,6 +166,9 @@
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
+    </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
     </option>
   </component>
   <component name="IdeDocumentHistory">
@@ -860,7 +864,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552625766669</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="正式版">
+      <created>1552625864101</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1552625864101</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView">
@@ -910,7 +921,8 @@
     <MESSAGE value="独立初始化脚本" />
     <MESSAGE value="删除test" />
     <MESSAGE value="测试功能并入核心代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试功能并入核心代码" />
+    <MESSAGE value="正式版" />
+    <option name="LAST_COMMIT_MESSAGE" value="正式版" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
