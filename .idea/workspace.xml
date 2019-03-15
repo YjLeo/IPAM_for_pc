@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1cdae30-78f5-43fb-8b90-7044fad92b3e" name="Default" comment="增加释放端口">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/IPinit.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/__init__.py" afterPath="" />
+    <list default="true" id="f1cdae30-78f5-43fb-8b90-7044fad92b3e" name="Default" comment="删除test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,7 +78,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IP_sync.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IP_sync.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/IP_sync.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
@@ -114,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Api-server.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Api-server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/Api-server.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="9" />
+              <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
               <folding>
                 <element signature="e#15#38#0" expanded="true" />
               </folding>
@@ -187,10 +185,10 @@
         <option value="$PROJECT_DIR$/test/test.py" />
         <option value="$PROJECT_DIR$/core/control.py" />
         <option value="$PROJECT_DIR$/bin/Daemon.py" />
-        <option value="$PROJECT_DIR$/bin/Api-server.py" />
         <option value="$PROJECT_DIR$/test/IPinit.py" />
         <option value="$PROJECT_DIR$/core/IPinit.py" />
         <option value="$PROJECT_DIR$/bin/IPinit.py" />
+        <option value="$PROJECT_DIR$/bin/Api-server.py" />
       </list>
     </option>
   </component>
@@ -272,6 +270,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="bin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPAM_for_pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPAM_for_pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Queueredis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -834,7 +846,21 @@
       <option name="project" value="LOCAL" />
       <updated>1552625678363</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="删除test">
+      <created>1552625699118</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1552625699118</updated>
+    </task>
+    <task id="LOCAL-00031" summary="测试功能并入核心代码">
+      <created>1552625766669</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1552625766669</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView">
@@ -882,7 +908,9 @@
     <MESSAGE value="修改端口&#10;" />
     <MESSAGE value="增加释放端口" />
     <MESSAGE value="独立初始化脚本" />
-    <option name="LAST_COMMIT_MESSAGE" value="独立初始化脚本" />
+    <MESSAGE value="删除test" />
+    <MESSAGE value="测试功能并入核心代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="测试功能并入核心代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1236,31 +1264,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/Daemon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
-          <caret line="59" column="14" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="14" />
-          <folding>
-            <element signature="e#15#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/Api-server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#15#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1294,6 +1302,26 @@
           <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
           <folding>
             <element signature="e#15#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/Daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="931">
+          <caret line="59" column="14" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="14" />
+          <folding>
+            <element signature="e#15#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/Api-server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <element signature="e#15#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
