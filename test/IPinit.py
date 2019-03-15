@@ -1,12 +1,63 @@
 # coding=utf-8
+import json
+import os
 from time import sleep
 import sys
-sys.path.append("..")
-import iptc
+BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
+
+
+#import iptc
 
 import requests
 ###清空cache
 from requests.auth import HTTPBasicAuth
+
+class foo:
+    @staticmethod
+    def get_ip(token):
+        url = "http://192.168.128.201/api/apiclient/addresses/first_free/11/"
+        payload = ""
+        headers = {
+            'token': token,
+            'cache-control': "no-cache",
+        }
+        try:
+            response = requests.request("POST", url, data=payload, headers=headers)
+            ip = (response.json()['data'])
+            print ip
+        except Exception as e:
+            return "None"
+        print "get "+ip
+        return ip
+    @staticmethod
+    def rec_ip(token,ips):
+        if ips =='None':
+            return ips
+        url = "http://192.168.128.201/api/apiclient/addresses/" + ips + "/11/"
+        payload = ""
+        headers = {
+            'token': token,
+            'cache-control': "no-cache",
+        }
+        try:
+            response = requests.request("DELETE", url, data=payload, headers=headers)
+        except:
+            return
+        print( str(ips) + " dele from ipam")
+        return str(ips)
+    def token(self):
+        url = "http://192.168.128.201/api/apiclient/user/"
+        payload = ""
+        headers = {}
+        try:
+            response = requests.request("POST", url, data=payload, headers=headers, auth=HTTPBasicAuth('leo', 'pconline'))
+            token=(response.json()['data']['token'])
+            return token
+        except:
+            print response.json(),"token error "+"token:"+token
+            return
+
 
 from core.Connect import redis
 ##清空需要回收的子网
@@ -38,8 +89,9 @@ def init_store():
 
 
 def search_DB():
+    IPAM=foo()
     headers = {
-        'token': 'HXIxUOljGo5LAX=.3r-_sFTA',
+        'token':IPAM.token() ,
         'cache-control': "no-cache",
     }
     rev = requests.request("GET", "http://192.168.128.201/api/apiclient/subnets/11/addresses/", headers=headers)
@@ -93,39 +145,50 @@ def Sync_idmap():
 
 
 if __name__ == '__main__':
-   print "开始健康检查"
-   search_pod_health()
-   print "K8S系统正常"
-   if len_allocat()>=1500:
-        print "IP余量大于1500不进行初始化:"+str(len_allocat())
-   else:
-        print "开始关闭端口"
-        table = iptc.Table(iptc.Table.FILTER)
-        chain = iptc.Chain(table, "INPUT")
-        rule = iptc.Rule()
-        rule.protocol = "tcp"
-        match = iptc.Match(rule, 'tcp')
-        rule.add_match(match)
-        match.dport='5000'
-        target = rule.create_target("DROP")
-        rule.target = target
-        chain.insert_rule(rule)
-        table.commit()
-        print  "##清空队列所有cache"
-        clean_redis()
-        uselist = search_k8s()
-        allip=search_DB()
-        print "获取网段IP总量完成:"+str(len(allip))
-        Unuse=[i for i in allip if i not in uselist]
-        print "计算可用IP数:"+str(len(Unuse))
-        print type(Unuse)
-        for ip in Unuse:
-             print ip
-             redis.connect('allocated').put(ip)
-        Sync_idmap()
-        print "释放端口"
-        chain.delete_rule(rule)
-        table.commit()
+     print "开始健康检查"
+     search_pod_health()
+     print "K8S系统正常"
+     if len_allocat()>=1500:
+          print "IP余量大于1500不进行初始化:"+str(len_allocat())
+     else:
+          print "开始关闭端口"
+
+
+
+          table = iptc.Table(iptc.Table.FILTER)
+          chain = iptc.Chain(table, "INPUT")
+          rule = iptc.Rule()
+          rule.protocol = "tcp"
+          match = iptc.Match(rule, 'tcp')
+          rule.add_match(match)
+          match.dport='5000'
+          target = rule.create_target("DROP")
+          rule.target = target
+          chain.insert_rule(rule)
+          table.commit()
+
+
+          print  "##清空队列所有cache"
+          clean_redis()
+          uselist = search_k8s()
+          allip=search_DB()
+          print "获取网段IP总量完成:"+str(len(allip))
+          Unuse=[i for i in allip if i not in uselist]
+          print "计算可用IP数:"+str(len(Unuse))
+          print type(Unuse)
+          for ip in Unuse:
+              print ip
+              redis.connect('allocated').put(ip)
+          Sync_idmap()
+          print "释放端口"
+
+
+
+         #########################
+          chain.delete_rule(rule)
+          table.commit()
+
+
 
 
 
