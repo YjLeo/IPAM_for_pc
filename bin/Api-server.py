@@ -5,10 +5,9 @@ from flask import request
 from flask_restful import Resource, Api
 import sys
 
-from test.IPinit import len_allocat
-
 BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
+from test.IPinit import len_allocat
 
 from core.control import ip, Store
 
