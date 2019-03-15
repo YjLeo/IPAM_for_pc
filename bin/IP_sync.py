@@ -1,12 +1,11 @@
 # coding=utf-8
 import os
 import sys
-
+BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 from core.Connect import redis
 from core.IPinit import search_pod_health, len_allocat, clean_redis, search_k8s, search_DB, Sync_idmap
 
-BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(BASE_DIR)
 import iptc
 
 if __name__ == '__main__':
