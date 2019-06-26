@@ -16,7 +16,7 @@ from requests.auth import HTTPBasicAuth
 class foo:
     @staticmethod
     def get_ip(token):
-        url = "http://192.168.128.201/api/apiclient/addresses/first_free/11/"
+        url = "http://192.168.128.201/api/apiclient/addresses/first_free/13/"
         payload = ""
         headers = {
             'token': token,
@@ -34,7 +34,7 @@ class foo:
     def rec_ip(token,ips):
         if ips =='None':
             return ips
-        url = "http://192.168.128.201/api/apiclient/addresses/" + ips + "/11/"
+        url = "http://192.168.128.201/api/apiclient/addresses/" + ips + "/13/"
         payload = ""
         headers = {
             'token': token,
@@ -94,7 +94,7 @@ def search_DB():
         'token':IPAM.token() ,
         'cache-control': "no-cache",
     }
-    rev = requests.request("GET", "http://192.168.128.201/api/apiclient/subnets/11/addresses/", headers=headers)
+    rev = requests.request("GET", "http://192.168.128.201/api/apiclient/subnets/13/addresses/", headers=headers)
     dict=[]
     for i in rev.json()['data']:
         if i['tag'] == '2':

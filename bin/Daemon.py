@@ -12,7 +12,7 @@ from core.Connect import redis
 class foo:
     @staticmethod
     def get_ip(token):
-        url = "http://192.168.128.201/api/apiclient/addresses/first_free/11/"
+        url = "http://192.168.128.201/api/apiclient/addresses/first_free/13/"
         payload = ""
         headers = {
             'token': token,
@@ -30,7 +30,7 @@ class foo:
     def rec_ip(token,ips):
         if ips =='None':
             return ips
-        url = "http://192.168.128.201/api/apiclient/addresses/" + ips + "/11/"
+        url = "http://192.168.128.201/api/apiclient/addresses/" + ips + "/13/"
         payload = ""
         headers = {
             'token': token,

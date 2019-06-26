@@ -34,7 +34,7 @@ class Redis(object):
 
 
 class RedisQueue(object):
-    def __init__(self, name,host,namespace='vlan128',**redis_kwargs):
+    def __init__(self, name,host,namespace='vlan18',**redis_kwargs):
        pool = redis.ConnectionPool(host=host, port=6379,db=0)
        # redis的默认参数为：host='localhost', port=6379, db=0， 其中db为定义redis database的数量
        self.__db= redis.Redis(connection_pool=pool,**redis_kwargs)
