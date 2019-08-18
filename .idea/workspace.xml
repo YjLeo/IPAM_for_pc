@@ -558,11 +558,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.IP_sync" />
-        <item itemvalue="Python.Api-server" />
-        <item itemvalue="Python.IPinit" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.IPinit" />
+        <item itemvalue="Python.IP_sync" />
         <item itemvalue="Python.Daemon" />
+        <item itemvalue="Python.Api-server" />
       </list>
     </recent_temporary>
   </component>
