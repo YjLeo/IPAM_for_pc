@@ -9,21 +9,21 @@ from core.IPinit import search_pod_health, len_allocat, clean_redis, search_k8s,
 import iptc
 
 if __name__ == '__main__':
-     print "开始健康检查"
-     search_pod_health()
-     print "K8S系统正常"
-     if len_allocat()>=1500:
-          print "IP余量大于1500不进行初始化:"+str(len_allocat())
-     else:
-          print "开始关闭端口"
-
-
+          print "开始健康检查"
+          search_pod_health()
+          print "K8S系统正常"
+    # if len_allocat()>=1500:
+    #      print "IP余量大于1500不进行初始化:"+str(len_allocat())
+    # else:
+    #      print "开始关闭端口"
+          #关闭防火墙
           table = iptc.Table(iptc.Table.FILTER)
           chain = iptc.Chain(table, "INPUT")
           rule = iptc.Rule()
           rule.protocol = "tcp"
           match = iptc.Match(rule, 'tcp')
           rule.add_match(match)
+          #关闭5000端口
           match.dport='5000'
           target = rule.create_target("DROP")
           rule.target = target
